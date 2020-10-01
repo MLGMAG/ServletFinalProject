@@ -1,3 +1,5 @@
+-- Postgres Database
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE SCHEMA "WebMarket";
