@@ -1,9 +1,6 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +10,9 @@ import java.util.UUID;
 public class Order {
     @Id
     private UUID id;
+    @Column
     private Status status;
+    @Column
     private LocalDate addingDate;
     @ManyToMany(targetEntity = Product.class)
     private List<Product> products;

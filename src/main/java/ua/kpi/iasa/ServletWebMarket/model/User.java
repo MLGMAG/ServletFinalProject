@@ -10,17 +10,26 @@ import java.util.UUID;
 public class User {
     @Id
     private UUID id;
+    @Column
     private String username;
+    @Column
     private String password;
+    @Column
     private String confirmPassword;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
     @OneToMany(targetEntity = Order.class)
     private List<Order> orders;
+    @Column
     private BigDecimal balance;
     @ManyToOne(targetEntity = Bucket.class)
+    @Column
     private Bucket bucket;
+    @Column
     private Role role;
+    @Column
     private boolean blocked;
 
     public User() {

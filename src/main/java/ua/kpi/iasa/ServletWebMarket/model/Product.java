@@ -1,13 +1,10 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 @Entity
@@ -15,11 +12,17 @@ import java.util.UUID;
 public class Product {
     @Id
     private UUID id;
+    @Column
     private String name;
+    @Column
     private String description;
+    @Column
     private BigDecimal price;
-    private LocalDate addingDate;
+    @CreationTimestamp
+    private Date addingDate;
+    @Column
     private Color color;
+    @Column
     private double size;
     @ManyToMany(targetEntity = Order.class)
     private List<Order> orderList;
@@ -29,7 +32,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(UUID id, String name, String description, BigDecimal price, LocalDate addingDate, Color color, double size, List<Order> orderList, List<Bucket> bucketList) {
+    public Product(UUID id, String name, String description, BigDecimal price, Date addingDate, Color color, double size, List<Order> orderList, List<Bucket> bucketList) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -73,11 +76,11 @@ public class Product {
         this.price = price;
     }
 
-    public LocalDate getAddingDate() {
+    public Date getAddingDate() {
         return addingDate;
     }
 
-    public void setAddingDate(LocalDate addingDate) {
+    public void setAddingDate(Date addingDate) {
         this.addingDate = addingDate;
     }
 
