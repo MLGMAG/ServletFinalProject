@@ -3,13 +3,15 @@ package ua.kpi.iasa.ServletWebMarket.model;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "product", schema = "web_market")
+public class Product implements Serializable {
     @Id
     private UUID id;
     @Column
@@ -27,13 +29,13 @@ public class Product {
     private double size;
     @ManyToMany(targetEntity = Order.class)
     private List<Order> orderList;
-    @ManyToMany(targetEntity = Bucket.class)
-    private List<Bucket> bucketList;
+    @ManyToMany(targetEntity = User.class)
+    private List<User> userList;
 
     public Product() {
     }
 
-    public Product(UUID id, String name, String description, BigDecimal price, Date addingDate, Color color, double size, List<Order> orderList, List<Bucket> bucketList) {
+    public Product(UUID id, String name, String description, BigDecimal price, Date addingDate, Color color, double size, List<Order> orderList, List<User> userList) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -42,7 +44,7 @@ public class Product {
         this.color = color;
         this.size = size;
         this.orderList = orderList;
-        this.bucketList = bucketList;
+        this.userList = userList;
     }
 
     public UUID getId() {
@@ -109,11 +111,11 @@ public class Product {
         this.orderList = orderList;
     }
 
-    public List<Bucket> getBucketList() {
-        return bucketList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setBucketList(List<Bucket> bucketList) {
-        this.bucketList = bucketList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

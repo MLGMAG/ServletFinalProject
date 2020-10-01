@@ -12,7 +12,7 @@
 
         <mapping class="ua.kpi.iasa.ServletWebMarket.model.User"/>
         <mapping class="ua.kpi.iasa.ServletWebMarket.model.Order"/>
-        <mapping class="ua.kpi.iasa.ServletWebMarket.model.Bucket"/>
         <mapping class="ua.kpi.iasa.ServletWebMarket.model.Product"/>
+        <mapping class="ua.kpi.iasa.ServletWebMarket.model.Item"/>
     </session-factory>
 </hibernate-configuration>

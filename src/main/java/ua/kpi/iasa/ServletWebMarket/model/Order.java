@@ -1,13 +1,14 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "order", schema = "web_market")
+public class Order implements Serializable {
     @Id
     private UUID id;
     @Enumerated(EnumType.STRING)
