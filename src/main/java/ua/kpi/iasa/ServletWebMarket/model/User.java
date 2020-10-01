@@ -1,18 +1,24 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "user")
 public class User {
+    @Id
     private UUID id;
     private String username;
     private String password;
     private String confirmPassword;
     private String firstName;
     private String lastName;
+    @OneToMany(targetEntity = Order.class)
     private List<Order> orders;
     private BigDecimal balance;
+    @ManyToOne(targetEntity = Bucket.class)
     private Bucket bucket;
     private Role role;
     private boolean blocked;

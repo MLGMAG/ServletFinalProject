@@ -1,11 +1,19 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-
+@Entity
+@Table(name = "product")
 public class Product {
+    @Id
     private UUID id;
     private String name;
     private String description;
@@ -13,7 +21,9 @@ public class Product {
     private LocalDate addingDate;
     private Color color;
     private double size;
+    @ManyToMany(targetEntity = Order.class)
     private List<Order> orderList;
+    @ManyToMany(targetEntity = Bucket.class)
     private List<Bucket> bucketList;
 
     public Product() {

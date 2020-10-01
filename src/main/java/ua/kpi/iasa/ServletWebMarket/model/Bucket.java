@@ -1,10 +1,16 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-public class Bucket {
+@Entity
+@Table(name = "bucket")
+public class Bucket implements Serializable {
+    @Id
     private UUID id;
+    @ManyToMany(targetEntity = Product.class)
     private List<Product> products;
 
     public Bucket() {

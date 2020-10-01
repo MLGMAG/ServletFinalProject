@@ -1,14 +1,22 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
+@Table(name = "order")
 public class Order {
+    @Id
     private UUID id;
-    private List<Product> products;
     private Status status;
     private LocalDate addingDate;
+    @ManyToMany(targetEntity = Product.class)
+    private List<Product> products;
 
     public Order(UUID id, List<Product> products, Status status, LocalDate addingDate) {
         this.id = id;
