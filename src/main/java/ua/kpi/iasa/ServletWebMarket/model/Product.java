@@ -14,11 +14,12 @@ public class Product {
     private Color color;
     private double size;
     private List<Order> orderList;
+    private List<Bucket> bucketList;
 
     public Product() {
     }
 
-    public Product(UUID id, String name, String description, BigDecimal price, LocalDate addingDate, Color color, double size, List<Order> orderList) {
+    public Product(UUID id, String name, String description, BigDecimal price, LocalDate addingDate, Color color, double size, List<Order> orderList, List<Bucket> bucketList) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,6 +28,7 @@ public class Product {
         this.color = color;
         this.size = size;
         this.orderList = orderList;
+        this.bucketList = bucketList;
     }
 
     public UUID getId() {
@@ -91,5 +93,13 @@ public class Product {
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    public List<Bucket> getBucketList() {
+        return bucketList;
+    }
+
+    public void setBucketList(List<Bucket> bucketList) {
+        this.bucketList = bucketList;
     }
 }
