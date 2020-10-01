@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Order {
     @Id
     private UUID id;
-    @Column
+    @Enumerated(EnumType.STRING)
     private Status status;
     @Column
     private LocalDate addingDate;

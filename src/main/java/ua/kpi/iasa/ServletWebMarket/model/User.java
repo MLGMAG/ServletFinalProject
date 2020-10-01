@@ -1,6 +1,7 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
 import javax.persistence.*;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +15,7 @@ public class User {
     private String username;
     @Column
     private String password;
-    @Column
+    @Transient
     private String confirmPassword;
     @Column
     private String firstName;
@@ -24,10 +25,10 @@ public class User {
     private List<Order> orders;
     @Column
     private BigDecimal balance;
+    @Column
     @ManyToOne(targetEntity = Bucket.class)
-    @Column
     private Bucket bucket;
-    @Column
+    @Enumerated(EnumType.STRING)
     private Role role;
     @Column
     private boolean blocked;

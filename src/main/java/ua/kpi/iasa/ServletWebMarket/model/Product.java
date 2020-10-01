@@ -21,6 +21,7 @@ public class Product {
     @CreationTimestamp
     private Date addingDate;
     @Column
+    @Enumerated(EnumType.STRING)
     private Color color;
     @Column
     private double size;
