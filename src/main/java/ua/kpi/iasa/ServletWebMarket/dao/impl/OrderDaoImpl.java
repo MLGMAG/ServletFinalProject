@@ -4,6 +4,7 @@ import ua.kpi.iasa.ServletWebMarket.dao.OrderDao;
 import ua.kpi.iasa.ServletWebMarket.model.Order;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class OrderDaoImpl implements OrderDao {
@@ -18,7 +19,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void delete(UUID uuid) {
+    public void removeById(UUID uuid) {
 
     }
 
@@ -28,7 +29,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Order getById(UUID uuid) {
-        return null;
+    public Optional<Order> getById(UUID uuid) {
+        return Optional.empty();
     }
 }

@@ -1,6 +1,11 @@
 package ua.kpi.iasa.ServletWebMarket.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,20 +18,28 @@ public class User implements Serializable {
     @Id
     private UUID id;
     @Column
+    @Length(min = 8)
+    @NotBlank
     private String username;
     @Column
+    @Length(min = 8)
+    @NotBlank
     private String password;
     @Transient
     private String confirmPassword;
     @Column(name = "first_name")
+    @NotEmpty
+    @NotBlank
     private String firstName;
     @Column(name = "last_name")
+    @NotEmpty
+    @NotBlank
     private String lastName;
-    @OneToMany(targetEntity = Order.class)
+    @OneToMany(targetEntity = Order.class, mappedBy = "user")
     private List<Order> orders;
-    @Column
+    @Column()
     private BigDecimal balance;
-    @ManyToMany(targetEntity = Product.class)
+    @OneToMany(targetEntity = Product.class, mappedBy = "user")
     private List<Product> products;
     @Enumerated(EnumType.STRING)
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -36,6 +49,20 @@ public class User implements Serializable {
     private boolean blocked;
 
     public User() {
+    }
+
+    public User(User user) {
+        this.id = user.id;
+        this.username = user.username;
+        this.password = user.password;
+        this.confirmPassword = user.confirmPassword;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.orders = user.orders;
+        this.balance = user.balance;
+        this.products = user.products;
+        this.role = user.role;
+        this.blocked = user.blocked;
     }
 
     public User(UUID id, String username, String password, String confirmPassword, String firstName, String lastName, List<Order> orders, BigDecimal balance, List<Product> products, Set<Role> role, boolean blocked) {

@@ -15,14 +15,17 @@ public class Order implements Serializable {
     private Status status;
     @Column
     private LocalDate addingDate;
+    @ManyToOne(targetEntity = User.class)
+    private User user;
     @ManyToMany(targetEntity = Product.class)
     private List<Product> products;
 
-    public Order(UUID id, List<Product> products, Status status, LocalDate addingDate) {
+    public Order(UUID id, Status status, LocalDate addingDate, User user, List<Product> products) {
         this.id = id;
-        this.products = products;
         this.status = status;
         this.addingDate = addingDate;
+        this.user = user;
+        this.products = products;
     }
 
     public Order() {
@@ -58,5 +61,13 @@ public class Order implements Serializable {
 
     public void setAddingDate(LocalDate addingDate) {
         this.addingDate = addingDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

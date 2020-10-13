@@ -5,6 +5,7 @@ import ua.kpi.iasa.ServletWebMarket.model.Color;
 import ua.kpi.iasa.ServletWebMarket.model.Product;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class ProductDaoImpl implements ProductDao {
@@ -29,7 +30,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void delete(UUID uuid) {
+    public void removeById(UUID uuid) {
 
     }
 
@@ -39,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product getById(UUID uuid) {
-        return null;
+    public Optional<Product> getById(UUID uuid) {
+        return Optional.empty();
     }
 }

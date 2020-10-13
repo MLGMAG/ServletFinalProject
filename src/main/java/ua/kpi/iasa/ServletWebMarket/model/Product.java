@@ -29,13 +29,13 @@ public class Product implements Serializable {
     private double size;
     @ManyToMany(targetEntity = Order.class)
     private List<Order> orderList;
-    @ManyToMany(targetEntity = User.class)
-    private List<User> userList;
+    @ManyToOne(targetEntity = User.class)
+    private User user;
 
     public Product() {
     }
 
-    public Product(UUID id, String name, String description, BigDecimal price, Date addingDate, Color color, double size, List<Order> orderList, List<User> userList) {
+    public Product(UUID id, String name, String description, BigDecimal price, Date addingDate, Color color, double size, List<Order> orderList, User user) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -44,7 +44,7 @@ public class Product implements Serializable {
         this.color = color;
         this.size = size;
         this.orderList = orderList;
-        this.userList = userList;
+        this.user = user;
     }
 
     public UUID getId() {
@@ -111,11 +111,11 @@ public class Product implements Serializable {
         this.orderList = orderList;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -40,8 +40,8 @@ CREATE TABLE web_market."user"
     password text COLLATE pg_catalog."default" NOT NULL,
     first_name text COLLATE pg_catalog."default" NOT NULL,
     last_name text COLLATE pg_catalog."default" NOT NULL,
-    balance money NOT NULL,
-    blocked boolean NOT NULL,
+    balance money NOT NULL DEFAULT 0,
+    blocked boolean NOT NULL DEFAULT false,
     username text COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id)
 );
