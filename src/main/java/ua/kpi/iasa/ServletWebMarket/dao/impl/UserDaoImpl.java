@@ -29,6 +29,7 @@ public class UserDaoImpl implements UserDao {
         query.setParameter("username", username);
         User user = query.uniqueResult();
         session.close();
+        System.out.println(user);
         return Optional.ofNullable(user);
     }
 

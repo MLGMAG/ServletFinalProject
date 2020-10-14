@@ -2,7 +2,9 @@ package ua.kpi.iasa.ServletWebMarket.service;
 
 import ua.kpi.iasa.ServletWebMarket.dao.EnumSingletonDao;
 import ua.kpi.iasa.ServletWebMarket.dao.UserDao;
+import ua.kpi.iasa.ServletWebMarket.exception.DuplicateUsernameException;
 import ua.kpi.iasa.ServletWebMarket.exception.LoginException;
+import ua.kpi.iasa.ServletWebMarket.exception.PasswordsMatchException;
 import ua.kpi.iasa.ServletWebMarket.exception.RegistrationException;
 import ua.kpi.iasa.ServletWebMarket.model.Role;
 import ua.kpi.iasa.ServletWebMarket.model.User;
@@ -10,6 +12,7 @@ import ua.kpi.iasa.ServletWebMarket.model.User;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Optional;
+import java.util.UUID;
 
 public class UserService {
 
@@ -23,20 +26,20 @@ public class UserService {
         userDao.removeByUsername(username);
     }
 
-    public void register(User user) {
+    public void register(User user) throws RegistrationException {
         Optional<User> optionalUser = userDao.getByUsername(user.getUsername());
         if (optionalUser.isPresent()) {
-            throw new RegistrationException("Username exist!");
+            throw new DuplicateUsernameException();
         }
         if (!user.getConfirmPassword().equals(user.getPassword())) {
-            throw new RegistrationException("Password not match!");
+            throw new PasswordsMatchException();
         }
 
         prepareUserToSave(user);
         userDao.save(user);
     }
 
-    public void login(User user) {
+    public void login(User user) throws LoginException {
         Optional<User> optionalUser = userDao.getByUsername(user.getUsername());
         User userFromDB = optionalUser.orElseThrow(() -> new LoginException("Username not exist!"));
         if (!userFromDB.getPassword().equals(encodePassword(user.getPassword()))) {
@@ -45,6 +48,7 @@ public class UserService {
     }
 
     private void prepareUserToSave(User user) {
+        user.setId(UUID.randomUUID());
         user.getRole().add(Role.USER);
         user.setPassword(encodePassword(user.getPassword()));
     }
